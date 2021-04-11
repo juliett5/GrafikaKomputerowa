@@ -1,0 +1,7 @@
+﻿  Main.cpp
+C:\Users\Robert\Desktop\troche takie no ważne no\STUDIA\GrafikaKomputerowa\Lab5\Zad1&2\Zad5\Main.cpp(147,21): warning C4244: "argument": konwersja z "double" do "GLfloat", możliwa utrata danych
+C:\Users\Robert\Desktop\troche takie no ważne no\STUDIA\GrafikaKomputerowa\Lab5\Zad1&2\Zad5\Main.cpp(227,15): warning C4244: "argument": konwersja z "int" do "GLfloat", możliwa utrata danych
+C:\Users\Robert\Desktop\troche takie no ważne no\STUDIA\GrafikaKomputerowa\Lab5\Zad1&2\Zad5\Main.cpp(228,15): warning C4244: "argument": konwersja z "int" do "GLfloat", możliwa utrata danych
+C:\Users\Robert\Desktop\troche takie no ważne no\STUDIA\GrafikaKomputerowa\Lab5\Zad1&2\Zad5\Main.cpp(229,15): warning C4244: "argument": konwersja z "int" do "GLfloat", możliwa utrata danych
+C:\Users\Robert\Desktop\troche takie no ważne no\STUDIA\GrafikaKomputerowa\Lab5\Zad1&2\Zad5\Main.cpp(300,36): warning C4305: "inicjowanie": obcięcie z "double" do "float"
+  Zad5.vcxproj -> C:\Users\Robert\Desktop\troche takie no ważne no\STUDIA\GrafikaKomputerowa\Lab5\Zad1&2\Debug\Zad5.exe
