@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<head>
+   <meta charset="UTF-8">
+   <title>CS 424 Lab 8</title>
+
+   <script src="three.js-master/build/three.js"></script>
+   <script src="resources/OrbitControls.js"></script>
+
+
+   <script src="three.js-master/examples/jsm/loaders/OBJLoader.js"></script>
+   <script src="three.js-master/examples/jsm/loaders/MTLLoader.js"></script>
+   <script src="three.js-master/examples/js/loaders/deprecated/LegacyJSONLoader.js"></script>
+   <script src="three.js-master/examples/jsm/loaders/GLTFLoader.js"></script>
+   <script src="three.js-master/examples/js/loaders/DRACOLoader.js"></script>
+   <script>
+
+      "use strict";
+
+      var canvas, renderer, scene, camera; // Standard three.js requirements.
+
+      var controls;  // An OrbitControls object that is used to implement
+                     // rotation of the scene using the mouse.  (It actually rotates
+                     // the camera around the scene.)
+
+      var animating = false;  // Set to true when an animation is in progress.
+      var frameNumber = 0;  // Frame number is advanced by 1 for each frame while animating.
+
+
+      var podloga, sufit1, sufit2, kula;
+      var kolumna1,kolumna2,kolumna3,kolumna4,kolumna5,kolumna6,kolumna7,kolumna8;
+      var kon1,kon2,kon3,kon4,kon5,kon6,kon7,kon8;
+      const groupaAnimacji = new THREE.Group();
+
+      /**
+       *  The render function draws the scene.
+       */
+      function render() {
+         renderer.render(scene, camera);
+      }
+
+
+      /**
+       * This function is called by the init() method to create the world.
+       */
+      function createWorld() {
+
+         renderer.setClearColor("grey"); // Background color for scene.
+         scene = new THREE.Scene();
+
+         // ------------------- Make a camera with viewpoint light ----------------------
+
+         camera = new THREE.PerspectiveCamera(30, canvas.width/canvas.height, 0.1, 100);
+         camera.position.z = 60;
+         var light;  // A light shining from the direction of the camera; moves with the camera.
+         light = new THREE.DirectionalLight(0x404040,3);
+         light.position.set(5,5,5);
+         camera.add(light);
+         scene.add(camera);
+
+         //------------------- Create the scene's visible objects ----------------------
+
+
+         kolumna1 = new THREE.Mesh(
+                    new THREE.CylinderGeometry(0.3,0.3,10,64,1),
+                    new THREE.MeshPhongMaterial(
+                    {
+                        color:"orange",
+                        specular: 0x000000,
+                        shininess: 16,
+                        shading: THREE.FlatShading
+                    }));
+
+             kolumna1.position.x=10;
+             kolumna1.position.z=0;
+             kolumna1.position.y=1;
+         groupaAnimacji.add(kolumna1);
+
+             kolumna2 = new THREE.Mesh(
+                    new THREE.CylinderGeometry(0.3,0.3,10,64,1),
+                    new THREE.MeshPhongMaterial(
+                    {
+                        color:"orange",
+                        specular: 0x000000,
+                        shininess: 16,
+                        shading: THREE.FlatShading
+                    }));
+
+             kolumna2.position.x=7;
+             kolumna2.position.z=-7;
+             kolumna2.position.y=1;
+         groupaAnimacji.add(kolumna2);
+
+
+
+             kolumna3 = new THREE.Mesh(
+                    new THREE.CylinderGeometry(0.3,0.3,10,64,1),
+                    new THREE.MeshPhongMaterial(
+                    {
+                        color:"orange",
+                        specular: 0x000000,
+                        shininess: 16,
+                        shading: THREE.FlatShading
+                    }));
+
+             kolumna3.position.x=0;
+             kolumna3.position.z=-10;
+             kolumna3.position.y=1;
+         groupaAnimacji.add(kolumna3);
+
+             kolumna4 = new THREE.Mesh(
+                    new THREE.CylinderGeometry(0.3,0.3,10,64,1),
+                    new THREE.MeshPhongMaterial(
+                    {
+                        color:"orange",
+                        specular: 0x000000,
+                        shininess: 16,
+                        shading: THREE.FlatShading
+                    }));
+
+             kolumna4.position.x=-7;
+             kolumna4.position.z=-7;
+             kolumna4.position.y=1;
+         groupaAnimacji.add(kolumna4);
+
+             kolumna5 = new THREE.Mesh(
+                    new THREE.CylinderGeometry(0.3,0.3,10,64,1),
+                    new THREE.MeshPhongMaterial(
+                    {
+                        color:"orange",
+                        specular: 0x000000,
+                        shininess: 16,
+                        shading: THREE.FlatShading
+                    }));
+
+             kolumna5.position.x=-10;
+             kolumna5.position.z=0;
+             kolumna5.position.y=1;
+         groupaAnimacji.add(kolumna5);
+
+             kolumna6 = new THREE.Mesh(
+                    new THREE.CylinderGeometry(0.3,0.3,10,64,1),
+                    new THREE.MeshPhongMaterial(
+                    {
+                        color:"orange",
+                        specular: 0x000000,
+                        shininess: 16,
+                        shading: THREE.FlatShading
+                    }));
+
+             kolumna6.position.x=-7;
+             kolumna6.position.z=7;
+             kolumna6.position.y=1;
+         groupaAnimacji.add(kolumna6);
+
+             kolumna7 = new THREE.Mesh(
+                    new THREE.CylinderGeometry(0.3,0.3,10,64,1),
+                    new THREE.MeshPhongMaterial(
+                    {
+                        color:"orange",
+                        specular: 0x000000,
+                        shininess: 16,
+                        shading: THREE.FlatShading
+                    }));
+
+             kolumna7.position.x=0;
+             kolumna7.position.z=10;
+             kolumna7.position.y=1;
+         groupaAnimacji.add(kolumna7);
+
+             kolumna8 = new THREE.Mesh(
+                    new THREE.CylinderGeometry(0.3,0.3,10,64,1),
+                    new THREE.MeshPhongMaterial(
+                    {
+                        color:"orange",
+                        specular: 0x000000,
+                        shininess: 16,
+                        shading: THREE.FlatShading
+                    }));
+
+             kolumna8.position.x=7;
+             kolumna8.position.z=7;
+             kolumna8.position.y=1;
+         groupaAnimacji.add(kolumna8);
+
+             //--------------------------------
+
+             podloga = new THREE.Mesh(
+                    new THREE.CylinderGeometry(15,15,2,128,0.5),
+                    new THREE.MeshPhongMaterial(
+                    {
+                        color:"darkblue",
+                        specular: 0x000000,
+                        shininess: 16,
+                        shading: THREE.FlatShading
+                    }));
+
+             podloga.position.x=0;
+             podloga.position.z=0;
+             podloga.position.y=-5;
+         groupaAnimacji.add(podloga);
+
+             sufit1 =  new THREE.Mesh(
+                     new THREE.CylinderGeometry(0,15,4,128,1),
+                     new THREE.MeshPhongMaterial({
+                         color:"brown",
+                         specular: 0x000000,
+                         shininess: 16,
+                         shading: THREE.FlatShading
+                     })
+             );
+             sufit1.position.y=8;
+         groupaAnimacji.add(sufit1);
+
+         sufit2 =  new THREE.Mesh(
+                 new THREE.CylinderGeometry(15,15,1,128,1),
+                 new THREE.MeshPhongMaterial({
+                    color:"brown",
+                    specular: 0x000000,
+                    shininess: 16,
+                    shading: THREE.FlatShading
+                 })
+         );
+         sufit2.position.y=5.5;
+         groupaAnimacji.add(sufit2);
+
+             // kula
+
+             var geometryEarth = new THREE.SphereGeometry(4.5, 64, 64);
+             var textureEarth = new THREE.TextureLoader().load('resources/earth.jpg');
+             var materialEarth = new THREE.MeshLambertMaterial(
+                {
+                  color: "white",
+                  map: textureEarth
+                });
+             kula = new THREE.Mesh( geometryEarth, materialEarth );
+             kula.position.y=0.4;
+         groupaAnimacji.add(kula);
+
+
+             // kons
+
+             var loader = new THREE.LegacyJSONLoader();
+
+             loader.load( 'resources/horse.js', function( geometry )
+             {
+                kon1 = new THREE.Mesh( geometry, new THREE.MeshPhongMaterial(
+                {
+                        color: 0xffe6d2,
+                        specular: 0x000000,
+                        shininess: 16,
+                        shading: THREE.FlatShading
+                }));
+                kon1.scale.set( 0.025, 0.025, 0.025 );
+                kon1.position.x=10;
+                kon1.position.z=0;
+                kon1.position.y=-3.8;
+                groupaAnimacji.add( kon1 );
+             });
+
+             loader.load( 'resources/horse.js', function( geometry )
+             {
+                kon2 = new THREE.Mesh( geometry, new THREE.MeshPhongMaterial(
+                {
+                        color: 0xffb400,
+                        specular: 0x000000,
+                        shininess: 16,
+                        shading: THREE.FlatShading
+                }));
+                kon2.scale.set( 0.025, 0.025, 0.025 );
+                kon2.position.x=7;
+                kon2.position.z=-7;
+                kon2.position.y=-3.8;
+                kon2.rotation.y = Math.PI/4;
+                groupaAnimacji.add( kon2 );
+             });
+
+             loader.load( 'resources/horse.js', function( geometry )
+             {
+                kon3 = new THREE.Mesh( geometry, new THREE.MeshPhongMaterial(
+                {
+                        color: 0x32b4ff,
+                        specular: 0x000000,
+                        shininess: 16,
+                        shading: THREE.FlatShading
+                }));
+                kon3.scale.set( 0.025, 0.025, 0.025 );
+                kon3.position.x=0;
+                kon3.position.z=-10;
+                kon3.position.y=-3.8;
+                kon3.rotation.y = Math.PI/4 * 2;
+                groupaAnimacji.add( kon3 );
+             });
+
+             loader.load( 'resources/horse.js', function( geometry )
+             {
+                kon4 = new THREE.Mesh( geometry, new THREE.MeshPhongMaterial(
+                {
+                        color: 0x0ac832,
+                        specular: 0x000000,
+                        shininess: 16,
+                        shading: THREE.FlatShading
+                }));
+                kon4.scale.set( 0.025, 0.025, 0.025 );
+                kon4.position.x=-7;
+                kon4.position.z=-7;
+                kon4.position.y=-3.8;
+                kon4.rotation.y = Math.PI/4 * 3;
+                groupaAnimacji.add( kon4 );
+             });
+
+             loader.load( 'resources/horse.js', function( geometry )
+             {
+                kon5 = new THREE.Mesh( geometry, new THREE.MeshPhongMaterial(
+                {
+                        color: 0xcc66cc,
+                        specular: 0x000000,
+                        shininess: 16,
+                        shading: THREE.FlatShading
+                }));
+                kon5.scale.set( 0.025, 0.025, 0.025 );
+                kon5.position.x=-10;
+                kon5.position.z=-0;
+                kon5.position.y=-3.8;
+                kon5.rotation.y = Math.PI/4 * 4;
+                groupaAnimacji.add( kon5 );
+             });
+
+             loader.load( 'resources/horse.js', function( geometry )
+             {
+                kon6 = new THREE.Mesh( geometry, new THREE.MeshPhongMaterial(
+                {
+                        color: 0xc73b32,
+                        specular: 0x000000,
+                        shininess: 16,
+                        shading: THREE.FlatShading
+                }));
+                kon6.scale.set( 0.025, 0.025, 0.025 );
+                kon6.position.x=-7;
+                kon6.position.z=7;
+                kon6.position.y=-3.8;
+                kon6.rotation.y = Math.PI/4 * 5;
+                groupaAnimacji.add( kon6 );
+             });
+
+             loader.load( 'resources/horse.js', function( geometry )
+             {
+                kon7 = new THREE.Mesh( geometry, new THREE.MeshPhongMaterial(
+                {
+                        color: 0x995f3d,
+                        specular: 0x000000,
+                        shininess: 16,
+                        shading: THREE.FlatShading
+                }));
+                kon7.scale.set( 0.025, 0.025, 0.025 );
+                kon7.position.x=0;
+                kon7.position.z=10;
+                kon7.position.y=-3.8;
+                kon7.rotation.y = Math.PI/4 * 6;
+                groupaAnimacji.add( kon7 );
+             });
+
+             loader.load( 'resources/horse.js', function( geometry )
+             {
+                kon8 = new THREE.Mesh( geometry, new THREE.MeshPhongMaterial(
+                {
+                        color: 0x1e2832,
+                        specular: 0x000000,
+                        shininess: 16,
+                        shading: THREE.FlatShading
+                }));
+                kon8.scale.set( 0.025, 0.025, 0.025 );
+                kon8.position.x=7;
+                kon8.position.z=7;
+                kon8.position.y=-3.8;
+                kon8.rotation.y = Math.PI/4 * 7;
+                groupaAnimacji.add( kon8 );
+             });
+         scene.add(groupaAnimacji);
+      } // end function createWorld()
+
+      /**
+       *  This function is called once for each frame of the animation, before
+       *  the render() function is called for that frame.  It updates any
+       *  animated properties.  The value of the global variable frameNumber
+       *  is incrementd 1 before this function is called.
+       */
+      function updateForFrame() {
+        groupaAnimacji.rotation.y=-frameNumber*0.03;
+      }
+
+
+      /* ---------------------------- MOUSE AND ANIMATION SUPPORT ------------------
+
+      /**
+       *  This page uses THREE.OrbitControls to let the user use the mouse to rotate
+       *  the view.  OrbitControls are designed to be used during an animation, where
+       *  the rotation is updated as part of preparing for the next frame.  The scene
+       *  is not automatically updated just because the user drags the mouse.  To get
+       *  the rotation to work without animation, I add another mouse listener to the
+       *  canvas, just to call the render() function when the user drags the mouse.
+       *  The same thing holds for touch events -- I call render for any mouse move
+       *  event with one touch.
+       */
+      function installOrbitControls() {
+         controls = new THREE.OrbitControls(camera,canvas);
+         controls.noPan = true;
+         controls.noZoom = true;
+         controls.staticMoving = true;
+         function move() {
+            controls.update();
+            if (! animating) {
+               render();
+            }
+         }
+         function down() {
+            document.addEventListener("mousemove", move, false);
+         }
+         function up() {
+            document.removeEventListener("mousemove", move, false);
+         }
+         function touch(event) {
+            if (event.touches.length == 1) {
+               move();
+            }
+         }
+         canvas.addEventListener("mousedown", down, false);
+         canvas.addEventListener("touchmove", touch, false);
+      }
+
+      /*  Called when user changes setting of the Animate checkbox. */
+      function doAnimateCheckbox() {
+         var run = document.getElementById("animateCheckbox").checked;
+         if (run != animating) {
+            animating = run;
+            if (animating) {
+               requestAnimationFrame(doFrame);
+            }
+         }
+      }
+
+      /*  Drives the animation, called by system through requestAnimationFrame() */
+      function doFrame() {
+         if (animating) {
+            frameNumber++;
+            updateForFrame();
+            render();
+            requestAnimationFrame(doFrame);
+         }
+      }
+
+      /*----------------------------- INITIALIZATION ----------------------------------------
+
+      /**
+       *  This function is called by the onload event so it will run after the
+       *  page has loaded.  It creates the renderer, canvas, and scene objects,
+       *  calls createWorld() to add objects to the scene, and renders the
+       *  initial view of the scene.  If an error occurs, it is reported.
+       */
+      function init() {
+         try {
+            canvas = document.getElementById("glcanvas");
+            renderer = new THREE.WebGLRenderer({
+               canvas: canvas,
+               antialias: true,
+               alpha: false
+            });
+         }
+         catch (e) {
+            document.getElementById("message").innerHTML="<b>Sorry, an error occurred:<br>" +
+                    e + "</b>";
+            return;
+         }
+         document.getElementById("animateCheckbox").checked = false;
+         document.getElementById("animateCheckbox").onchange = doAnimateCheckbox;
+         createWorld();
+         installOrbitControls();
+         render();
+      }
+
+   </script>
+</head>
+<body onload="init()">
+
+<h2>Three.js Modeling Demo: Merry-Go-Round</h2>
+
+<noscript>
+   <p style="color: #AA0000; font-weight: bold">Sorry, but this page requires JavaScript!</p>
+</noscript>
+
+<p style="color:#AA0000; font-weight: bold" id="message">
+</p>
+
+<p>
+   <label><input type="checkbox" id="animateCheckbox"><b>Animate</b></label>
+   <b style="margin-left:50px">Use the mouse to rotate the model.</b>
+</p>
+
+<div id="canvas-holder" style="float:left; border: thin solid black; background-color: white">
+   <canvas width=1200 height=600 id="glcanvas"></canvas>
+</div>
+
+</body>
+</html>
