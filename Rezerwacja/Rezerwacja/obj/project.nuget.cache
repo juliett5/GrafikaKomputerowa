@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "CNreQ+iSCm3L7e5ClMmUM+PScDKhBcItoAF1hTnzNl9lvFe98V0WAMLP/T4Tgve0JF3ueGV0GJKTucUAj8JpNA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Robert-Laptop\\source\\repos\\Rezerwacja\\Rezerwacja\\Rezerwacja.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Robert-Laptop\\.nuget\\packages\\dapper\\2.0.90\\dapper.2.0.90.nupkg.sha512"
+  ],
+  "logs": []
+}
